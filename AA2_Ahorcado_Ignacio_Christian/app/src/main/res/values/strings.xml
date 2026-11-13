@@ -1,0 +1,19 @@
+<!-- Textos por defecto (inglés). La traducción al castellano está en values-es/strings.xml -->
+<resources>
+    <string name="app_name">Hangman</string>
+
+    <!-- Splash -->
+    <string name="tap_to_continue">Tap to continue</string>
+    <string name="splash_image_description">Hanged stick figure</string>
+
+    <!-- Selector de niveles -->
+    <string name="level_selector_title">Select a level</string>
+    <string name="level_number">Level %1$d</string>
+    <string name="level_word">Word: %1$s</string>
+    <string name="level_letters">Letters: %1$d</string>
+
+    <!-- Dificultades -->
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+</resources>

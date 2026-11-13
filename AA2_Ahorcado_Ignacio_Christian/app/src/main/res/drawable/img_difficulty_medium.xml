@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado con asistencia de IA (Claude) -->
+<!-- Imagen provisional de dificultad. Se puede sustituir por cualquier imagen con el mismo nombre: img_difficulty_medium -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="@color/difficulty_medium"
+        android:pathData="M4,24 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0" />
+    <path
+        android:fillColor="@color/face_detail"
+        android:pathData="M14.5,19 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 M28.5,19 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
+    <path
+        android:pathData="M16,31 H32"
+        android:strokeWidth="3"
+        android:strokeColor="@color/face_detail"
+        android:strokeLineCap="round" />
+</vector>

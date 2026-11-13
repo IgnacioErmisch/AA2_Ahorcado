@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado con asistencia de IA (Claude) -->
+<!-- Medidas centralizadas para no tener magic numbers en los layouts -->
+<resources>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+
+    <dimen name="text_title">48sp</dimen>
+    <dimen name="text_subtitle">20sp</dimen>
+    <dimen name="text_item_title">18sp</dimen>
+    <dimen name="text_item_body">14sp</dimen>
+
+    <dimen name="difficulty_image_size">56dp</dimen>
+    <dimen name="item_corner_radius">12dp</dimen>
+    <dimen name="item_stroke_width">2dp</dimen>
+</resources>

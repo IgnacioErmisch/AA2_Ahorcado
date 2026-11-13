@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado con asistencia de IA (Claude) -->
+<!-- Paleta modo claro: papel y tinta. Las versiones oscuras están en values-night/colors.xml -->
+<resources>
+    <color name="paper">#FFF3E9D2</color>
+    <color name="ink">#FF3B2F2F</color>
+    <color name="accent">#FFB23A48</color>
+    <color name="toolbar_background">#FFE3D3AE</color>
+    <color name="level_item_background">#FFFFF8E7</color>
+
+    <!-- Imágenes de dificultad (iguales en ambos modos) -->
+    <color name="difficulty_easy">#FF4CAF50</color>
+    <color name="difficulty_medium">#FFFFC107</color>
+    <color name="difficulty_hard">#FFFF7043</color>
+    <color name="face_detail">#FF212121</color>
+</resources>

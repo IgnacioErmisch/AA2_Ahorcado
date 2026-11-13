@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado con asistencia de IA (Claude) -->
+<!-- Imagen provisional de la splash (horca + muñeco). Se puede sustituir por cualquier imagen
+     con el mismo nombre: img_splash -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Horca -->
+    <path
+        android:pathData="M10,110 H70 M25,110 V10 H80 V28 M25,30 L45,10"
+        android:strokeWidth="4"
+        android:strokeColor="@color/ink"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- Muñeco -->
+    <path
+        android:pathData="M70,38 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 M80,48 V78 M80,56 L68,68 M80,56 L92,68 M80,78 L70,96 M80,78 L90,96"
+        android:strokeWidth="3"
+        android:strokeColor="@color/accent"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
