@@ -27,6 +27,8 @@
             android:name=".LevelSelectorActivity"
             android:exported="false"
             android:label="@string/level_selector_title" />
+        <activity
+            android:name=".GameActivity" />
     </application>
 
 </manifest>

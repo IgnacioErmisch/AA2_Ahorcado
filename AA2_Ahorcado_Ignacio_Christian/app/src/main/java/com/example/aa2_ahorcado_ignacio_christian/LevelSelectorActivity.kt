@@ -1,6 +1,7 @@
 // Generado con asistencia de IA (Claude)
 package com.example.aa2_ahorcado_ignacio_christian
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -11,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 /**
- * Selector de niveles: lista con scroll vertical de todos los niveles definidos
- * en [LevelRepository]. Cada fila muestra el número de nivel, la palabra (para debug),
- * la cantidad de letras y una imagen con la dificultad.
+- Selector de niveles: lista con scroll vertical de todos los niveles definidos
+- en [LevelRepository]. Cada fila muestra el número de nivel, la palabra (para debug),
+- la cantidad de letras y una imagen con la dificultad.
  */
 class LevelSelectorActivity : AppCompatActivity() {
 
@@ -58,6 +59,13 @@ class LevelSelectorActivity : AppCompatActivity() {
 
         difficultyImage.setImageResource(level.difficulty.imageRes)
         difficultyImage.contentDescription = getString(level.difficulty.labelRes)
+
+        // Acción de clic para iniciar el juego
+        levelView.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra("WORD_TO_GUESS", level.word)
+            startActivity(intent)
+        }
 
         return levelView
     }
