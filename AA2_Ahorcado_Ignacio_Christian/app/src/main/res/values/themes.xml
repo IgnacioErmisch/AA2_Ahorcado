@@ -1,0 +1,12 @@
+<resources>
+    <style name="Base.Theme.AA2_Ahorcado_Ignacio_Christian" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/paper</item>
+        <item name="android:colorBackground">@color/paper</item>
+        <item name="colorOnBackground">@color/ink</item>
+        <item name="colorSurface">@color/paper</item>
+        <item name="colorOnSurface">@color/ink</item>
+    </style>
+
+    <style name="Theme.AA2_Ahorcado_Ignacio_Christian" parent="Base.Theme.AA2_Ahorcado_Ignacio_Christian" />
+</resources>

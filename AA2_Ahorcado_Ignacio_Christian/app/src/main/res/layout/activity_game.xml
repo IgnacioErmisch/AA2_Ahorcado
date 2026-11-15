@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbar_background"
+        android:elevation="@dimen/toolbar_elevation"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/ink"
+        app:menu="@menu/topbar_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ScrollView para que en landscape no se solape -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <!-- Contenedor del Ahorcado -->
+            <FrameLayout
+                android:id="@+id/hangmanContainer"
+                android:layout_width="@dimen/hangman_size"
+                android:layout_height="@dimen/hangman_size"
+                android:layout_marginTop="@dimen/spacing_medium">
+
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_base" tools:ignore="ContentDescription" />
+
+                <ImageView android:id="@+id/imgHangman0" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_0" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman1" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_1" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman2" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_2" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman3" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_3" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman4" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_4" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman5" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_5" android:visibility="invisible" />
+            </FrameLayout>
+
+            <!-- Palabra a adivinar -->
+            <TextView
+                android:id="@+id/wordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/word_min_height"
+                android:layout_marginHorizontal="@dimen/spacing_medium"
+                android:gravity="center"
+                android:letterSpacing="0.2"
+                android:textColor="@color/ink"
+                android:textSize="@dimen/text_word"
+                android:textStyle="bold" />
+
+            <!-- Teclado -->
+            <GridLayout
+                android:id="@+id/keyboardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:columnCount="@integer/keyboard_columns" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Capa invisible: detecta el tap final para salir -->
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

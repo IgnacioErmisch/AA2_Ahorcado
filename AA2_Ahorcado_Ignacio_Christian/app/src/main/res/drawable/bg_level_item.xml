@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de cada fila del selector -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/level_item_background" />
+    <corners android:radius="@dimen/item_corner_radius" />
+    <stroke
+        android:width="@dimen/item_stroke_width"
+        android:color="@color/ink" />
+</shape>

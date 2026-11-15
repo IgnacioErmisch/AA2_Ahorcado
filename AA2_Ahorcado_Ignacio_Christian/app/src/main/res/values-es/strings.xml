@@ -1,0 +1,42 @@
+<!-- Textos en castellano -->
+<resources>
+    <string name="app_name">Ahorcado</string>
+    <string name="toggle_theme">Cambiar tema</string>
+    <string name="change_language">English</string>
+
+    <!-- Splash -->
+    <string name="tap_to_continue">Haz tap para continuar</string>
+    <string name="splash_image_description">Muñeco ahorcado</string>
+
+    <!-- Selector de niveles -->
+    <string name="level_selector_title">Selecciona un nivel</string>
+    <string name="level_number">Nivel %1$d</string>
+    <string name="level_word">Palabra: %1$s</string>
+    <string name="level_letters">Letras: %1$d</string>
+
+    <!-- Dificultades -->
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_medium">Medio</string>
+    <string name="difficulty_hard">Difícil</string>
+
+    <!-- Partida -->
+    <string name="you_win">¡Has ganado!</string>
+    <string name="you_lose">Has perdido</string>
+
+    <!-- Sin tildes ni Ñ para poder jugarlas con el teclado A-Z -->
+    <string-array name="level_words">
+        <item>SOL</item>
+        <item>GATO</item>
+        <item>ENTI</item>
+        <item>LUNA</item>
+        <item>TOMATE</item>
+        <item>KOTLIN</item>
+        <item>ANDROID</item>
+        <item>PIRATA</item>
+        <item>CASTILLO</item>
+        <item>MARIPOSA</item>
+        <item>VIDEOJUEGO</item>
+        <item>INTERNACIONAL</item>
+        <item>ESTERNOCLEIDOMASTOIDEO</item>
+    </string-array>
+</resources>
