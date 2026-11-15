@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Selector de niveles: el label es el título que muestra la toolbar -->
         <activity
             android:name=".LevelSelectorActivity"
             android:exported="false"

@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generado con asistencia de IA (Claude) -->
-<!-- Imagen provisional de la splash (horca + muñeco). Se puede sustituir por cualquier imagen
-     con el mismo nombre: img_splash -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="240dp"
     android:height="240dp"

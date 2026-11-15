@@ -1,10 +1,9 @@
-// Generado con asistencia de IA (Claude)
 package com.example.aa2_ahorcado_ignacio_christian
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-// Máximo de letras (incluido) de cada dificultad, según el enunciado
+// Máximo de letras de cada dificultad, según el enunciado
 private const val EASY_MAX_LETTERS = 4
 private const val MEDIUM_MAX_LETTERS = 7
 

@@ -1,5 +1,4 @@
 <resources>
-    <!-- Tema modo noche: mismos atributos, los colores se resuelven desde values-night/colors.xml -->
     <style name="Base.Theme.AA2_Ahorcado_Ignacio_Christian" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/accent</item>
         <item name="colorOnPrimary">@color/paper</item>

@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generado con asistencia de IA (Claude) -->
-<!-- Selector de niveles: toolbar fija arriba y lista de niveles con scroll vertical -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,18 +11,14 @@
     android:focusable="true"
     tools:context=".LevelSelectorActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/toolbar_background"
-        android:elevation="4dp"
+        android:elevation="@dimen/toolbar_elevation"
         app:titleTextColor="@color/ink"
-        app:menu="@menu/topbar_menu"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:menu="@menu/topbar_menu" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +26,7 @@
         android:layout_weight="1"
         android:background="@color/paper">
 
-        <!-- Las filas se añaden desde LevelSelectorActivity con la plantilla item_level -->
+        <!-- Filas añadidas desde código con item_level -->
         <LinearLayout
             android:id="@+id/levelContainer"
             android:layout_width="match_parent"

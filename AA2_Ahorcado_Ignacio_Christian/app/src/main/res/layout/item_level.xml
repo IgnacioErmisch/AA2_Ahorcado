@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generado con asistencia de IA (Claude) -->
-<!-- Plantilla de una fila del selector: datos del nivel a la izquierda, dificultad a la derecha -->
+<!-- Fila del selector de niveles -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"

@@ -6,23 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:background="?attr/colorSurface"
-        app:title="Ahorcado"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbar_background"
+        android:elevation="@dimen/toolbar_elevation"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/ink"
         app:menu="@menu/topbar_menu"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Todo el contenido va en un ScrollView: en horizontal se puede desplazar en vez de solaparse -->
+    <!-- ScrollView para que en landscape no se solape -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -36,32 +38,32 @@
             <!-- Contenedor del Ahorcado -->
             <FrameLayout
                 android:id="@+id/hangmanContainer"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp">
+                android:layout_width="@dimen/hangman_size"
+                android:layout_height="@dimen/hangman_size"
+                android:layout_marginTop="@dimen/spacing_medium">
 
-                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_base" />
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_base" tools:ignore="ContentDescription" />
 
-                <ImageView android:id="@+id/img_hangman_0" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_0" android:visibility="invisible" />
-                <ImageView android:id="@+id/img_hangman_1" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_1" android:visibility="invisible" />
-                <ImageView android:id="@+id/img_hangman_2" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_2" android:visibility="invisible" />
-                <ImageView android:id="@+id/img_hangman_3" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_3" android:visibility="invisible" />
-                <ImageView android:id="@+id/img_hangman_4" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_4" android:visibility="invisible" />
-                <ImageView android:id="@+id/img_hangman_5" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_5" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman0" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_0" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman1" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_1" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman2" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_2" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman3" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_3" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman4" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_4" android:visibility="invisible" />
+                <ImageView android:id="@+id/imgHangman5" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_5" android:visibility="invisible" />
             </FrameLayout>
 
-            <!-- Palabra: ocupa el espacio libre (centrada entre ahorcado y teclado, como en vertical) -->
+            <!-- Palabra a adivinar -->
             <TextView
                 android:id="@+id/wordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:minHeight="64dp"
-                android:layout_marginHorizontal="16dp"
+                android:minHeight="@dimen/word_min_height"
+                android:layout_marginHorizontal="@dimen/spacing_medium"
                 android:gravity="center"
                 android:letterSpacing="0.2"
-                android:textColor="@android:color/black"
-                android:textSize="32sp"
+                android:textColor="@color/ink"
+                android:textSize="@dimen/text_word"
                 android:textStyle="bold" />
 
             <!-- Teclado -->
@@ -69,12 +71,12 @@
                 android:id="@+id/keyboardLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:columnCount="7" />
+                android:layout_margin="@dimen/spacing_medium"
+                android:columnCount="@integer/keyboard_columns" />
         </LinearLayout>
     </ScrollView>
 
-    <!-- Capa invisible que se activa al final para detectar el tap y salir -->
+    <!-- Capa invisible: detecta el tap final para salir -->
     <View
         android:id="@+id/overlayView"
         android:layout_width="match_parent"
@@ -87,4 +89,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

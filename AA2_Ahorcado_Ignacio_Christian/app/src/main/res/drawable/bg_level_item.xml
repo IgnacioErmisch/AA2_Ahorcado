@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generado con asistencia de IA (Claude) -->
-<!-- Fondo de cada fila del selector: tarjeta de papel con borde de tinta -->
+<!-- Fondo de cada fila del selector -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/level_item_background" />

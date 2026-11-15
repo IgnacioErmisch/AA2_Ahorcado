@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generado con asistencia de IA (Claude) -->
-<!-- Medidas centralizadas para no tener magic numbers en los layouts -->
+<!-- Medidas centralizadas (sin magic numbers) -->
 <resources>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
@@ -10,8 +9,17 @@
     <dimen name="text_subtitle">20sp</dimen>
     <dimen name="text_item_title">18sp</dimen>
     <dimen name="text_item_body">14sp</dimen>
+    <dimen name="text_word">32sp</dimen>
 
     <dimen name="difficulty_image_size">56dp</dimen>
     <dimen name="item_corner_radius">12dp</dimen>
     <dimen name="item_stroke_width">2dp</dimen>
+
+    <dimen name="hangman_size">200dp</dimen>
+    <dimen name="word_min_height">64dp</dimen>
+    <dimen name="key_margin">4dp</dimen>
+    <dimen name="title_margin_top">80dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+
+    <integer name="keyboard_columns">7</integer>
 </resources>

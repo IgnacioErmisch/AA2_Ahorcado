@@ -1,6 +1,5 @@
 package com.example.aa2_ahorcado_ignacio_christian
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,75 +8,69 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.appbar.MaterialToolbar
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 
 class GameActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_WORD_TO_GUESS = "WORD_TO_GUESS"
+        private const val KEY_COLUMN_WEIGHT = 1f
+        private const val HIDDEN_LETTER = '_'
+        private const val LETTER_SEPARATOR = " "
+    }
+
+    private lateinit var toolbar: Toolbar
     private lateinit var wordTextView: TextView
     private lateinit var keyboardLayout: GridLayout
     private lateinit var overlayView: View
-
-    private val hangmanParts = mutableListOf<ImageView>()
+    private lateinit var hangmanParts: List<ImageView>
 
     private var wordToGuess = ""
     private val guessedLetters = mutableSetOf<Char>()
     private var mistakes = 0
-    private val maxMistakes = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
-        topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_toggle_theme -> {
-                    val isNightMode = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK == android.content.res.Configuration.UI_MODE_NIGHT_YES
-                    if (isNightMode) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    } else {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    }
-                    true
-                }
-                else -> false
-            }
-        }
+        toolbar = findViewById(R.id.toolbar)
+        setupTopBar(this, toolbar)
 
         wordTextView = findViewById(R.id.wordTextView)
         keyboardLayout = findViewById(R.id.keyboardLayout)
         overlayView = findViewById(R.id.overlayView)
 
-        for (i in 0..maxMistakes-1) {
-            val resourceId = resources.getIdentifier("img_hangman_$i", "id", packageName)
-            if (resourceId != 0) {
-                val imageView = findViewById<ImageView>(resourceId)
-                hangmanParts.add(imageView)
-            }
-        }
+        // Partes del cuerpo en el orden en que aparecen al fallar
+        hangmanParts = listOf(
+            R.id.imgHangman0, R.id.imgHangman1, R.id.imgHangman2,
+            R.id.imgHangman3, R.id.imgHangman4, R.id.imgHangman5
+        ).map { findViewById(it) }
 
-        wordToGuess = intent.getStringExtra("WORD_TO_GUESS")?.uppercase() ?: "KOTLIN"
+        val word = intent.getStringExtra(EXTRA_WORD_TO_GUESS)
+        if (word == null) {
+            finish()
+            return
+        }
+        wordToGuess = word.uppercase()
 
         setupKeyboard()
         updateWordUI()
-        updateHangmanUI()
     }
 
     private fun setupKeyboard() {
-        // Códigos ASCII del 65 (A) al 90 (Z)
-        for (asciiCode in 65..90) {
-            val char = asciiCode.toChar()
+        val keyMargin = resources.getDimensionPixelSize(R.dimen.key_margin)
 
+        for (letter in 'A'..'Z') {
             val button = Button(this).apply {
-                text = char.toString()
+                text = letter.toString()
                 layoutParams = GridLayout.LayoutParams().apply {
                     width = 0
                     height = GridLayout.LayoutParams.WRAP_CONTENT
-                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                    setMargins(4, 4, 4, 4)
+                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, KEY_COLUMN_WEIGHT)
+                    setMargins(keyMargin, keyMargin, keyMargin, keyMargin)
                 }
-                setOnClickListener { onLetterGuessed(char, this) }
+                setOnClickListener { onLetterGuessed(letter, this) }
             }
             keyboardLayout.addView(button)
         }
@@ -85,7 +78,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun onLetterGuessed(letter: Char, button: Button) {
         button.isEnabled = false
-        button.setBackgroundColor(Color.GRAY)
+        button.setBackgroundColor(ContextCompat.getColor(this, R.color.key_used))
 
         guessedLetters.add(letter)
 
@@ -100,33 +93,31 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun updateWordUI() {
-        val displayWord = StringBuilder()
-        for (char in wordToGuess) {
-            if (guessedLetters.contains(char)) {
-                displayWord.append("$char ")
-            } else {
-                displayWord.append("_ ")
-            }
-        }
-        wordTextView.text = displayWord.toString().trim()
+        wordTextView.text = formatWord(revealAll = false)
     }
 
+    // Muestra las letras acertadas y oculta el resto con '_'
+    private fun formatWord(revealAll: Boolean): String =
+        wordToGuess.map { letter ->
+            if (revealAll || guessedLetters.contains(letter)) letter else HIDDEN_LETTER
+        }.joinToString(LETTER_SEPARATOR)
+
     private fun updateHangmanUI() {
-        if (mistakes > 0 && mistakes <= hangmanParts.size) {
+        if (mistakes in 1..hangmanParts.size) {
             hangmanParts[mistakes - 1].visibility = View.VISIBLE
         }
     }
 
     private fun checkWinCondition() {
         if (wordToGuess.all { guessedLetters.contains(it) }) {
-            endGame("You Win")
+            endGame(getString(R.string.you_win))
         }
     }
 
     private fun checkLoseCondition() {
-        if (mistakes >= maxMistakes) {
-            endGame("You Lose")
-            wordTextView.text = wordToGuess.map { "$it " }.joinToString("").trim()
+        if (mistakes >= hangmanParts.size) {
+            endGame(getString(R.string.you_lose))
+            wordTextView.text = formatWord(revealAll = true)
         }
     }
 
@@ -137,10 +128,8 @@ class GameActivity : AppCompatActivity() {
             keyboardLayout.getChildAt(i).isEnabled = false
         }
 
-        // Activar la capa invisible para capturar el tap final y volver atrás
+        // Capa invisible: el siguiente tap vuelve al selector
         overlayView.visibility = View.VISIBLE
-        overlayView.setOnClickListener {
-            finish()
-        }
+        overlayView.setOnClickListener { finish() }
     }
 }
