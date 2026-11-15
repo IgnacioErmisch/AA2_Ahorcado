@@ -8,13 +8,6 @@ import androidx.annotation.StringRes
 private const val EASY_MAX_LETTERS = 4
 private const val MEDIUM_MAX_LETTERS = 7
 
-/**
- * Dificultad de un nivel según la cantidad de letras de su palabra.
- *
- * @property maxLetters Máximo de letras (incluido) para pertenecer a esta dificultad.
- * @property imageRes Imagen que representa la dificultad en el selector.
- * @property labelRes Nombre de la dificultad (se usa como descripción de la imagen).
- */
 enum class Difficulty(
     val maxLetters: Int,
     @DrawableRes val imageRes: Int,
@@ -25,7 +18,6 @@ enum class Difficulty(
     HARD(Int.MAX_VALUE, R.drawable.img_difficulty_hard, R.string.difficulty_hard);
 
     companion object {
-        /** Devuelve la primera dificultad (de menor a mayor) cuyo máximo admite [letterCount]. */
         fun fromLetterCount(letterCount: Int): Difficulty =
             entries.first { letterCount <= it.maxLetters }
     }

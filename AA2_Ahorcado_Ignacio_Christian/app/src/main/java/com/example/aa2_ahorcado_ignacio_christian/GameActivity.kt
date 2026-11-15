@@ -18,7 +18,6 @@ class GameActivity : AppCompatActivity() {
     private lateinit var keyboardLayout: GridLayout
     private lateinit var overlayView: View
 
-    // Lista para guardar las 6 partes del cuerpo
     private val hangmanParts = mutableListOf<ImageView>()
 
     private var wordToGuess = ""
@@ -30,7 +29,7 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar) // Ojo: R.id.topAppBar, sin el "="
+        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_toggle_theme -> {
@@ -46,12 +45,10 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        // Enlazar las vistas principales del XML
         wordTextView = findViewById(R.id.wordTextView)
         keyboardLayout = findViewById(R.id.keyboardLayout)
         overlayView = findViewById(R.id.overlayView)
 
-        // Bucle para buscar dinámicamente img_hangman_0 hasta img_hangman_5 y guardarlos
         for (i in 0..maxMistakes-1) {
             val resourceId = resources.getIdentifier("img_hangman_$i", "id", packageName)
             if (resourceId != 0) {
@@ -60,7 +57,6 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        // Recibir la palabra a adivinar desde LevelSelectorActivity
         wordToGuess = intent.getStringExtra("WORD_TO_GUESS")?.uppercase() ?: "KOTLIN"
 
         setupKeyboard()
@@ -69,9 +65,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun setupKeyboard() {
-        // Iteramos sobre los códigos ASCII del 65 (A) al 90 (Z)
+        // Códigos ASCII del 65 (A) al 90 (Z)
         for (asciiCode in 65..90) {
-            val char = asciiCode.toChar() // Convertimos el número a letra
+            val char = asciiCode.toChar()
 
             val button = Button(this).apply {
                 text = char.toString()
@@ -88,7 +84,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun onLetterGuessed(letter: Char, button: Button) {
-        // Deshabilitar el botón y ponerlo gris
         button.isEnabled = false
         button.setBackgroundColor(Color.GRAY)
 
@@ -110,14 +105,13 @@ class GameActivity : AppCompatActivity() {
             if (guessedLetters.contains(char)) {
                 displayWord.append("$char ")
             } else {
-                displayWord.append("_ ") // Oculta la letra con el guión
+                displayWord.append("_ ")
             }
         }
         wordTextView.text = displayWord.toString().trim()
     }
 
     private fun updateHangmanUI() {
-        // Si hay 1 error, muestra el índice 0 de la lista. Si hay 6, el índice 5.
         if (mistakes > 0 && mistakes <= hangmanParts.size) {
             hangmanParts[mistakes - 1].visibility = View.VISIBLE
         }
@@ -132,7 +126,6 @@ class GameActivity : AppCompatActivity() {
     private fun checkLoseCondition() {
         if (mistakes >= maxMistakes) {
             endGame("You Lose")
-            // Revelar la palabra al perder
             wordTextView.text = wordToGuess.map { "$it " }.joinToString("").trim()
         }
     }
@@ -140,7 +133,6 @@ class GameActivity : AppCompatActivity() {
     private fun endGame(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 
-        // Bloquear todos los botones del teclado
         for (i in 0 until keyboardLayout.childCount) {
             keyboardLayout.getChildAt(i).isEnabled = false
         }

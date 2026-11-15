@@ -10,10 +10,6 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 
-/**
- * Splash screen del juego. Muestra el título y una imagen; al tocar cualquier
- * punto de la pantalla se abre el selector de niveles.
- */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var rootLayout: LinearLayout
@@ -44,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         rootLayout.setOnClickListener { onScreenTapped() }
     }
 
-    /** Abre el selector de niveles y cierra la splash para que "atrás" no vuelva a ella. */
+    // finish() para que "atrás" no vuelva a la splash
     private fun onScreenTapped() {
         startActivity(Intent(this, LevelSelectorActivity::class.java))
         finish()

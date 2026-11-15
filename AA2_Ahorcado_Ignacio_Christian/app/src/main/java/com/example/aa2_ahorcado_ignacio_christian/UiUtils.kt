@@ -8,10 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-/**
- * Con edge-to-edge el contenido se dibuja detrás de la status bar y la navigation bar.
- * Esta función añade como padding de [view] el tamaño de esas barras para que no tapen la UI.
- */
+// Con edge-to-edge las barras del sistema tapan la UI; se añade su tamaño como padding
 fun applySystemBarsPadding(view: View) {
     ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
         val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

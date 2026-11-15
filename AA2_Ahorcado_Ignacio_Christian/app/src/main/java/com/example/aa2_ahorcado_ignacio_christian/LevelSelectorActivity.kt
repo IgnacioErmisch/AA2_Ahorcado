@@ -14,11 +14,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.appbar.MaterialToolbar
 
-/**
-- Selector de niveles: lista con scroll vertical de todos los niveles definidos
-- en [LevelRepository]. Cada fila muestra el número de nivel, la palabra (para debug),
-- la cantidad de letras y una imagen con la dificultad.
- */
 class LevelSelectorActivity : AppCompatActivity() {
 
     private lateinit var rootLayout: LinearLayout
@@ -52,14 +47,12 @@ class LevelSelectorActivity : AppCompatActivity() {
         populateLevels()
     }
 
-    /** Crea una fila por cada nivel y la añade al contenedor del ScrollView. */
     private fun populateLevels() {
         for (level in LevelRepository.levels) {
             levelContainer.addView(createLevelView(level))
         }
     }
 
-    /** Infla la plantilla item_level y la rellena con los datos de [level]. */
     private fun createLevelView(level: Level): View {
         val levelView = layoutInflater.inflate(R.layout.item_level, levelContainer, false)
 
@@ -75,7 +68,6 @@ class LevelSelectorActivity : AppCompatActivity() {
         difficultyImage.setImageResource(level.difficulty.imageRes)
         difficultyImage.contentDescription = getString(level.difficulty.labelRes)
 
-        // Acción de clic para iniciar el juego
         levelView.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
             intent.putExtra("WORD_TO_GUESS", level.word)
