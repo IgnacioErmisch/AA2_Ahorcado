@@ -13,12 +13,18 @@
     android:focusable="true"
     tools:context=".LevelSelectorActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/toolbar_background"
-        app:titleTextColor="@color/ink" />
+        android:elevation="4dp"
+        app:titleTextColor="@color/ink"
+        app:menu="@menu/topbar_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ScrollView
         android:layout_width="match_parent"

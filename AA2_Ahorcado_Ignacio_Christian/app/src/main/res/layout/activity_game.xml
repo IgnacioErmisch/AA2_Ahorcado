@@ -2,8 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="?attr/colorSurface"
+        android:elevation="-1dp"
+        app:title="Ahorcado"
+        app:menu="@menu/topbar_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Contenedor del Ahorcado -->
     <FrameLayout
@@ -24,7 +37,14 @@
         <ImageView android:id="@+id/img_hangman_2" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_2" android:visibility="invisible" />
         <ImageView android:id="@+id/img_hangman_3" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_3" android:visibility="invisible" />
         <ImageView android:id="@+id/img_hangman_4" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_4" android:visibility="invisible" />
-        <ImageView android:id="@+id/img_hangman_5" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/hangman_5" android:visibility="invisible" />
+
+        <!-- PERDER -->
+        <ImageView
+            android:id="@+id/img_hangman_5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/hangman_5"
+            android:visibility="invisible" />
     </FrameLayout>
 
     <!-- Texto de la palabra a adivinar -->

@@ -1,7 +1,10 @@
 // Generado con asistencia de IA (Claude)
 package com.example.aa2_ahorcado_ignacio_christian
 
+import android.content.res.Configuration
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 

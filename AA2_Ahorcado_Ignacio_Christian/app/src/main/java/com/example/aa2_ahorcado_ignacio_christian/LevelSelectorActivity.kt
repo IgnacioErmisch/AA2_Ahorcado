@@ -2,6 +2,7 @@
 package com.example.aa2_ahorcado_ignacio_christian
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -9,7 +10,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.MaterialToolbar
 
 /**
 - Selector de niveles: lista con scroll vertical de todos los niveles definidos
@@ -31,7 +34,19 @@ class LevelSelectorActivity : AppCompatActivity() {
         applySystemBarsPadding(rootLayout)
 
         toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        toolbar.setTitle(R.string.level_selector_title)
+        toolbar.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.action_toggle_theme) {
+                val currentMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                val isNight = currentMode == Configuration.UI_MODE_NIGHT_YES
+                AppCompatDelegate.setDefaultNightMode(
+                    if (isNight) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
+                )
+                true
+            } else {
+                false
+            }
+        }
 
         levelContainer = findViewById(R.id.levelContainer)
         populateLevels()

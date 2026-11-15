@@ -1,6 +1,7 @@
 <!-- Textos en castellano -->
 <resources>
     <string name="app_name">Ahorcado</string>
+    <string name="toggle_theme">Cambiar tema</string>
 
     <!-- Splash -->
     <string name="tap_to_continue">Haz tap para continuar</string>

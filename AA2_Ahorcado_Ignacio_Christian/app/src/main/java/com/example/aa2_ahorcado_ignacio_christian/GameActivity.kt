@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.appbar.MaterialToolbar
+import androidx.appcompat.app.AppCompatDelegate
 
 class GameActivity : AppCompatActivity() {
 
@@ -28,13 +30,29 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar) // Ojo: R.id.topAppBar, sin el "="
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_toggle_theme -> {
+                    val isNightMode = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK == android.content.res.Configuration.UI_MODE_NIGHT_YES
+                    if (isNightMode) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+
         // Enlazar las vistas principales del XML
         wordTextView = findViewById(R.id.wordTextView)
         keyboardLayout = findViewById(R.id.keyboardLayout)
         overlayView = findViewById(R.id.overlayView)
 
         // Bucle para buscar dinámicamente img_hangman_0 hasta img_hangman_5 y guardarlos
-        for (i in 0..5) {
+        for (i in 0..maxMistakes-1) {
             val resourceId = resources.getIdentifier("img_hangman_$i", "id", packageName)
             if (resourceId != 0) {
                 val imageView = findViewById<ImageView>(resourceId)
@@ -51,9 +69,10 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun setupKeyboard() {
-        val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        // Iteramos sobre los códigos ASCII del 65 (A) al 90 (Z)
+        for (asciiCode in 65..90) {
+            val char = asciiCode.toChar() // Convertimos el número a letra
 
-        for (char in alphabet) {
             val button = Button(this).apply {
                 text = char.toString()
                 layoutParams = GridLayout.LayoutParams().apply {
